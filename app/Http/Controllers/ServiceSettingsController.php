@@ -37,30 +37,6 @@ class ServiceSettingsController extends Controller
         return response()->json(['service_setting' => $serviceSetting], 201);
     }
 
-    // public function update(Request $request, $id)
-    // {
-
-    //    // return $request;
-
-    //     $validatedData = $request->validate([
-    //         'opening_time' => 'required',
-    //         'closing_time' => 'required',
-    //         'max_clients_per_slot' => 'required|integer',
-    //         'slot_duration' => 'required|integer',
-    //         'cleaning_break_duration' => 'required|integer',
-    //         'break_start_time' => 'required',
-    //         'break_end_time' => 'required',
-    //     ]);
-
-    //    // return "Here i am";
-    //     $serviceSetting = SeviceSetting::findOrFail($id);
-
-    //     //return $serviceSetting;
-    //     $serviceSetting->update($validatedData);
-
-    //     return response()->json(['service_setting' => $serviceSetting]);
-    // }
-
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -84,7 +60,7 @@ class ServiceSettingsController extends Controller
         $existingSlots = Slot::where('service_type_id', $serviceSetting->service_id)
             ->where('date', $day)
             ->exists();
-            
+
         if ($existingSlots) {
             return response()->json(['message' => 'Cannot update settings. Slots already exist for the day.'], 400);
         }

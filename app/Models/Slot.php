@@ -17,10 +17,5 @@ class Slot extends Model
         'available_slots',
         'booked_slots',
     ];
-
-     // Relationships
-    //  public function serviceType()
-    //  {
-    //      return $this->belongsTo(ServiceType::class);
-    //  }
+   
 }
